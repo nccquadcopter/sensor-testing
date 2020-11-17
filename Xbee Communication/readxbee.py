@@ -26,14 +26,13 @@ while True: #for as long as there is no exception, do the following:
 	try:
 		oneByte = ser.read(1) #try reading one byte, what does it say?
 		if oneByte == b"\r": #if that byte indicates the end of the line...
-			print (buffer) # print it out so we can see what it said before the last character in the line
-			with open(path,"a") as f: #lines 31 through 33 is a block to write the line to a csv file at our "path". open a file at the path and call it variable, f
+			print (buffer) # print it out so we can see what it said 
+			with open(path,"a") as f: #lines 30 and 32 write to the file
 				f.write(str(time.time()) + "," + str(buffer) + "\n")
-				f.close() #close the file, f 
-			buffer = "" #let's reset the buffer again, because we just saved the whole line.
+			buffer = "" #let's reset the buffer, because we just saved the whole line.
 			continue #and continue with our "while loop"
 		else:
-			buffer += oneByte.decode() #if line 30 indicated that it wasn't the end of the line, add the byte to the buffer and continue our while loop.
+			buffer += oneByte.decode() #if line 28 indicated that it wasn't the end of the line, add the byte to the buffer and continue our while loop.
 	except:
 		ser.flushInput() #if there is an exception/error, flush the serial port and end the loop
 
