@@ -22,5 +22,5 @@ def clean_magData():
 	magframe = magframe.set_index('sensor_time') #set index to sensor_id
 	return magframe
 
-
 mag = clean_magData()
+mag.plot()
