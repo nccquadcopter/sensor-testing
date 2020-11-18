@@ -14,7 +14,10 @@ def clean_magData():
 		'sensor_time', 'magx', 'magy', 'magz'])
 
 	magframe = df[df.sensor_id == "magData"] #creates magnetometer df. filters out incomplete tags
-	magframe = magframe[~magframe.magz.str.contains('mag')]#filters out tags in numerical data
+	try:
+		magframe = magframe[~magframe.magz.str.contains('mag')]#filters out tags in numerical data
+	except:
+		pass
 	magframe.magz = magframe.magz.astype(float) #converts magz to float after removing strings
 	print(str(len(df) - len(magframe)) + ' rows removed from dataset.') #tell us what we removed
 	magframe = magframe.drop(['recieved_time', 'sensor_id'], axis=1)# get rid of our timestamp and id, rely on one from teensy and the fact that we know this all comes from the magnetometer
@@ -24,3 +27,23 @@ def clean_magData():
 
 mag = clean_magData()
 mag.plot()
+
+
+
+# the snippet below  is the first attempt at maping in 3d. it works for the x,y,z magData
+# this will be more useful when we pair the values with position
+#  ..right now, it lacks anything about orientation
+#  incredible, really. after "cleaning", it takes 9 lines of code to plot it in 3 dimensions
+
+from matplotlib import cm
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax = Axes3D(fig)
+
+dfz = mag.reset_index()
+dfz = dfz[['magx','magy','magz']]
+
+ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz, cmap=cm.jet, linewidth=0.2)
+plt.show()
