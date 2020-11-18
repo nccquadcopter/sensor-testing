@@ -19,7 +19,7 @@ def clean_magData():
 	except:
 		pass
 	magframe.magz = magframe.magz.astype(float) #converts magz to float after removing strings
-	print(str(len(df) - len(magframe)) + ' rows removed from dataset.') #tell us what we removed
+	print(str(len(df) - len(magframe)) + ' rows removed from dataset.\n') #tell us what we removed
 	magframe = magframe.drop(['recieved_time', 'sensor_id'], axis=1)# get rid of our timestamp and id, rely on one from teensy and the fact that we know this all comes from the magnetometer
 	magframe.to_csv('/users/aaron/desktop/mag_data.csv') #save mag data in its own csv file
 	magframe = magframe.set_index('sensor_time') #set index to sensor_id
@@ -33,7 +33,7 @@ mag.plot()
 # the snippet below  is the first attempt at maping in 3d. it works for the x,y,z magData
 # this will be more useful when we pair the values with position
 #  ..right now, it lacks anything about orientation
-#  incredible, really. after "cleaning", it takes 9 lines of code to plot it in 3 dimensions
+#  incredible, really. after "cleaning", it takes just a few lines of code to plot it in 3 dimensions
 
 from matplotlib import cm
 import matplotlib.pyplot as plt
@@ -45,5 +45,8 @@ ax = Axes3D(fig)
 dfz = mag.reset_index()
 dfz = dfz[['magx','magy','magz']]
 
-ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz, cmap=cm.jet, linewidth=0.2)
+surf = ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz, 
+	cmap=plt.get_cmap('gist_earth'), linewidth=0.2)
+fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
+
 plt.show()
