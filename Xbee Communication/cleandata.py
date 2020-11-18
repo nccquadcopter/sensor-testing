@@ -14,7 +14,7 @@ def clean_magData():
 		'sensor_time', 'magx', 'magy', 'magz'])
 
 	magframe = df[df.sensor_id == "magData"] #creates magnetometer df. filters out incomplete tags
-	magframe = magframe[~magframe.magz.str.contains('mag')]#filters out tags into numerical data
+	magframe = magframe[~magframe.magz.str.contains('mag')]#filters out tags in numerical data
 	magframe.magz = magframe.magz.astype(float) #converts to float after removing strings
 	print(str(len(df) - len(magframe)) + ' rows removed from dataset.') #tell us what we removed
 	magframe = magframe.drop(['recieved_time', 'sensor_id'], axis=1)# get rid of our timestamp, rely on one from teensy
