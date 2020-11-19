@@ -37,6 +37,8 @@ while True: #for as long as there is no exception, do the following:
 			buffer += oneByte.decode() #if line 28 indicated that it wasn't the end of the line, add the byte to the buffer and continue our while loop.
 	except:
 		ser.flushInput() #if there is an exception/error, flush the serial port and end the loop
+		quit()
+		exit()
 
 
 
