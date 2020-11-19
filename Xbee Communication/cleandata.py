@@ -28,8 +28,6 @@ def clean_magData():
 mag = clean_magData()
 mag.plot()
 
-
-
 # the snippet below  is the first attempt at maping in 3d. it works for the x,y,z magData
 # this will be more useful when we pair the values with position
 #  ..right now, it lacks anything about orientation
@@ -46,7 +44,7 @@ dfz = mag.reset_index()
 dfz = dfz[['magx','magy','magz']]
 
 surf = ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz, 
-	cmap=plt.get_cmap('gist_earth'), linewidth=0.2)
+	cmap=plt.get_cmap('inferno'), linewidth=0.2)
 fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
 
 plt.show()
