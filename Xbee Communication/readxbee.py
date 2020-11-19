@@ -3,14 +3,16 @@ import time # are package "dependencies." Think of them as "libraries" for certa
 
 # lines 6-12 assigns a "read serial port" function to the variable ser, along with some parameters
 ser = serial.Serial(
-	port='/dev/tty.usbserial-DN066RZ4', #this line is important, it's the name of the serial port that the xbee is connected to
+	# port='/dev/tty.usbserial-DN066RZ4', #this line is important, it's the name of the serial port 
+	# that the xbee is connected to
+	port = '/dev/ttyUSB0',
 	baudrate=9600,
 	parity=serial.PARITY_NONE, #don't know what this does but it works
 	stopbits=serial.STOPBITS_ONE, #don't know what this does but it works
 	bytesize=serial.EIGHTBITS) #don't know what this does but it works
 ser.timeout=5
 
-path = '/users/aaron/desktop/test_data.csv' # set the file path and name it path. This will be different on every computer and needs to be configured
+path = '/usr/scripts/test_data.csv' # set the file path and name it path. This will be different on every computer and needs to be configured
 
 print() 
 print("NORMANDALE QUADCOPTER TEAM")
