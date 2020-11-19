@@ -19,16 +19,15 @@ def clean_magData():
 		magframe = magframe[~magframe.magz.str.contains('mag')]#filters out tags in numerical data
 	except:
 		pass
-	magframe.magz = magframe.magz.astype(float) #converts magz to float after removing strings
 	print('\n'+str(len(df) - len(magframe))+' rows removed from dataset.\n') #tell us what we removed
 	magframe = magframe.drop(['recieved_time', 'sensor_id'], axis=1)# get rid of our timestamp and id, rely on one from teensy and the fact that we know this all comes from the magnetometer
+	magframe = magframe.astype(float) #make sure all values are floats
 	magframe.to_csv('/usr/scripts/mag_data.csv') #save mag data in its own csv file
 	# magframe.to_csv('/users/aaron/desktop/mag_data.csv')
-	magframe = magframe.set_index('sensor_time') #set index to sensor_id
 	return magframe
 
 mag = clean_magData()
-mag.plot()
+# mag.plot()
 
 # the snippet below  is the first attempt at maping in 3d. it works for the x,y,z magData
 # this will be more useful when we pair the values with position
@@ -46,7 +45,7 @@ dfz = mag.reset_index()
 dfz = dfz[['magx','magy','magz']]
 
 surf = ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz, 
-	cmap=plt.get_cmap('inferno'), linewidth=0.2)
+	cmap=plt.get_cmap('cubehelix_r'), linewidth=0.2)
 fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
 
 plt.show()
