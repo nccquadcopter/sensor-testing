@@ -16,7 +16,7 @@ ser.timeout=5
 
 path = '/users/aaron/desktop/test_data.csv' # set the file path and name it path. This will be different on every computer and needs to be configured
 
-print() 
+print('test')
 print("NORMANDALE QUADCOPTER TEAM")
 print()
 print("connected to: " + ser.portstr) #print the port name in the terminal
