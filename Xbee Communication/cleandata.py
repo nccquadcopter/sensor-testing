@@ -7,8 +7,7 @@ import matplotlib
 matplotlib.use('QT4Agg')
 import pandas as pd
 
-path = '/usr/scripts/test_data.csv' #change this to location of file
-# path = '/users/aaron/desktop/test_data.csv'
+path = '/users/aaron/desktop/test_data.csv' #change this to location of file
 
 def clean_magData():
 	df = pd.read_csv(path, header=None, names=['recieved_time', 'sensor_id', 
@@ -22,8 +21,7 @@ def clean_magData():
 	print('\n'+str(len(df) - len(magframe))+' rows removed from dataset.\n') #tell us what we removed
 	magframe = magframe.drop(['recieved_time', 'sensor_id'], axis=1)# get rid of our timestamp and id, rely on one from teensy and the fact that we know this all comes from the magnetometer
 	magframe = magframe.astype(float) #make sure all values are floats
-	magframe.to_csv('/usr/scripts/mag_data.csv') #save mag data in its own csv file
-	# magframe.to_csv('/users/aaron/desktop/mag_data.csv')
+	magframe.to_csv('/users/aaron/desktop/mag_data.csv') #save mag data in its own csv file
 	return magframe
 
 mag = clean_magData()
