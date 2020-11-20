@@ -37,7 +37,6 @@ while True: #for as long as there is no exception, do the following:
 	except:
 		ser.flushInput() #if there is an exception/error, flush the serial port and end the loop
 		quit()
-		exit()
 
 
 
