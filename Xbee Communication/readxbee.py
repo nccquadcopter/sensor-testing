@@ -1,6 +1,9 @@
 import serial # these
 import time # are package "dependencies." Think of them as "libraries" for certain functions (like the libraries that contain certain functions for our sensors)
+asdfasdfasdf
+asdfasdfasd
 
+asdfasdfasdfsadf
 # lines 6-12 assigns a "read serial port" function to the variable ser, along with some parameters
 ser = serial.Serial(
 	port='/dev/tty.usbserial-DN066RZ4', #this line is important, it's the name of the serial port 
