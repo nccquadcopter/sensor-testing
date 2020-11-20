@@ -1,5 +1,5 @@
 String readString = "";
-
+//demonstration
 void setup() {
   Serial.begin(9600);           //instantiate local serial (the regular usb port)
   Serial1.begin(9600);          //instantiate xbee serial (the teensy transmit/recieve pins 0 and 1)
