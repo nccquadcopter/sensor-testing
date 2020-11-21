@@ -1,9 +1,6 @@
 import serial # these
 import time # are package "dependencies." Think of them as "libraries" for certain functions (like the libraries that contain certain functions for our sensors)
-asdfasdfasdf
-asdfasdfasd
 
-asdfasdfasdfsadf
 # lines 6-12 assigns a "read serial port" function to the variable ser, along with some parameters
 ser = serial.Serial(
 	port='/dev/tty.usbserial-DN066RZ4', #this line is important, it's the name of the serial port 
@@ -16,7 +13,7 @@ ser.timeout=5
 
 path = '/users/aaron/desktop/test_data.csv' # set the file path and name it path. This will be different on every computer and needs to be configured
 
-print() 
+print('test')
 print("NORMANDALE QUADCOPTER TEAM")
 print()
 print("connected to: " + ser.portstr) #print the port name in the terminal
