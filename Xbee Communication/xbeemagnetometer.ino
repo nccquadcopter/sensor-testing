@@ -58,7 +58,7 @@ void loop() {
   {
     digitalWrite(magLED, LOW);
   }
-  magData = String(magX,6) + "," + String(magY,6) + "," + String(magZ,6);
+  magData = String(magX,5) + "," + String(magY,5) + "," + String(magZ,5);
 
   //Creates the string "dataLOG" and includes the device measurements listed, which is then printed to the serial monitor.
   String dataLOG = String(millis()) + "," + magData;
