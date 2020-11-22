@@ -65,6 +65,6 @@ void loop() {
   Serial1.print("magData");
   Serial1.print(",");
   Serial1.print(dataLOG);
-  Serial1.print("\r"); //prints to the serial monitor so you can see the incoming data
-  delay(250);  //waits .5 sec before re-running the loop  
+  Serial1.print("\r");
+  delay(250);  //waits .25 sec before re-running the loop  
 }
