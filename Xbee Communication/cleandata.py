@@ -31,7 +31,7 @@ mag = clean_magData()
 # this will be more useful when we pair the values with position
 #  ..right now, it lacks anything about orientation
 #  incredible, really. after "cleaning", it takes just a few lines of code to plot it in 3 dimensions
-
+import numpy as np
 from matplotlib import cm
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -42,8 +42,20 @@ ax = Axes3D(fig)
 dfz = mag.reset_index()
 dfz = dfz[['magx','magy','magz']]
 
-surf = ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz, 
-	cmap=plt.get_cmap('cubehelix_r'), linewidth=0.2)
+surf = ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz,  
+	cmap=plt.get_cmap('cubehelix_r'), edgecolor="black", linewidth=0.2)
 fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
 
+# ax.scatter(dfz.magx, dfz.magy, dfz.magz, c=dfz.magz, cmap='cubehelix', linewidth=0.5)
+# ax.plot(dfz.magx, dfz.magy, dfz.magz, color='black', linewidth=0.2)
+
+ax.set_xlabel('X')
+# ax.set_xlim(-40, 40)
+ax.set_ylabel('Y')
+# ax.set_ylim(-40, 40)
+ax.set_zlabel('Z')
+# ax.set_zlim(-100, 100)
+
 plt.show()
+
+
