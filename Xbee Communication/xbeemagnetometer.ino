@@ -27,7 +27,41 @@ void setup() {
   {
     Serial.println("Failed to communicate with LSM9DS1.");  //Prints error message on startup if the IMU is not wired correctly.
   }
+  
   delay(500);
+  
+   // [enabled] turns the magnetometer on or off.
+  LSM.settings.mag.enabled = true; // Enable magnetometer
+  // [scale] sets the full-scale range of the magnetometer
+  // mag scale can be 4, 8, 12, or 16
+  LSM.settings.mag.scale = 12; // Set mag scale to +/-12 Gs
+  // [sampleRate] sets the output data rate (ODR) of the
+  // magnetometer.
+  // mag data rate can be 0-7:
+  // 0 = 0.625 Hz  4 = 10 Hz
+  // 1 = 1.25 Hz   5 = 20 Hz
+  // 2 = 2.5 Hz    6 = 40 Hz
+  // 3 = 5 Hz      7 = 80 Hz
+  LSM.settings.mag.sampleRate = 5; // Set OD rate to 20Hz
+  // [tempCompensationEnable] enables or disables 
+  // temperature compensation of the magnetometer.
+  LSM.settings.mag.tempCompensationEnable = false;
+  // [XYPerformance] sets the x and y-axis performance of the
+  // magnetometer to either:
+  // 0 = Low power mode      2 = high performance
+  // 1 = medium performance  3 = ultra-high performance
+  LSM.settings.mag.XYPerformance = 3; // Ultra-high perform.
+  // [ZPerformance] does the same thing, but only for the z
+  LSM.settings.mag.ZPerformance = 3; // Ultra-high perform.
+  // [lowPowerEnable] enables or disables low power mode in
+  // the magnetometer.
+  LSM.settings.mag.lowPowerEnable = false;
+  // [operatingMode] sets the operating mode of the
+  // magnetometer. operatingMode can be 0-2:
+  // 0 = continuous conversion
+  // 1 = single-conversion
+  // 2 = power down
+  LSM.settings.mag.operatingMode = 0; // Continuous mode
   
   //Prints header everytime on startup
   String headerLOG = "Time(ms), Mag(x), Mag(y), Mag(z)";  //Defines "headerLOG" as a string that contains the inscribed text.
@@ -37,7 +71,6 @@ void setup() {
   Serial.print("\r");
   delay(500);  //waits 500 ms
 }
-
 
 void loop() {
   //IMU loop (gets the new data every loop and redefines the variables and then puts them in the string "magData"
@@ -66,5 +99,5 @@ void loop() {
   Serial1.print(",");
   Serial1.print(dataLOG);
   Serial1.print("\r");
-  delay(250);  //waits .25 sec before re-running the loop  
+  delay(100);  //waits .05 sec before re-running the loop  
 }

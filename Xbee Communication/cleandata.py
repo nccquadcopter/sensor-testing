@@ -43,10 +43,10 @@ dfz = mag.reset_index()
 dfz = dfz[['magx','magy','magz']]
 
 surf = ax.plot_trisurf(dfz.magx, dfz.magy, dfz.magz,  
-	cmap=plt.get_cmap('cubehelix_r'), edgecolor="black", linewidth=0.2)
+	cmap='twilight', edgecolor="black", linewidth=0.2)
 fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
 
-# ax.scatter(dfz.magx, dfz.magy, dfz.magz, c=dfz.magz, cmap='cubehelix', linewidth=0.5)
+# ax.scatter(dfz.magx, dfz.magy, dfz.magz, c=dfz.magz, cmap='twilight', linewidth=0.5)
 # ax.plot(dfz.magx, dfz.magy, dfz.magz, color='black', linewidth=0.2)
 
 ax.set_xlabel('X')
