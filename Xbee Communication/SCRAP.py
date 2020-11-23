@@ -36,10 +36,10 @@ grid = np.nan * np.empty((len(j),len(i)))
 
 # Bin the data onto a 10x10 grid
 # Have to reverse x & y due to row-first indexing
-# zi, yi, xi = np.histogram2d(j, i, bins=(1910,1910), weights=z, normed=False)
-# counts, _, _ = np.histogram2d(j, i, bins=(1910,1910))
+zi, yi, xi = np.histogram2d(j, i, bins=(1910,1910), weights=z, normed=False)
+counts, _, _ = np.histogram2d(j, i, bins=(1910,1910))
 
-# zi = zi / counts
+zi = zi / counts
 # zi = np.ma.masked_invalid(zi)
 
 # fig, ax = plt.subplots()
