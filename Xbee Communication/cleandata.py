@@ -26,6 +26,8 @@ def clean_magData():
 
 mag = clean_magData()
 # mag.plot()
+# 
+mag = pd.read_csv('/users/aaron/desktop/mag_data.csv')
 
 # the snippet below  is the first attempt at maping in 3d. it works for the x,y,z magData
 # this will be more useful when we pair the values with position
