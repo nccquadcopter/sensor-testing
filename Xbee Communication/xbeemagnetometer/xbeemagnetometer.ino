@@ -15,22 +15,9 @@ float magX; // magnetometer values
 float magY;
 float magZ;
 
-void setup() { 
-  Serial1.begin(9600); //XBEE SERIAL
-  Serial.begin(9600);  //begins serial communications that can be used for troubleshooting at a baud rate of 9600.
-  Wire.begin(); //initiates wire library for I2C
-  //LED pin outputs 
-  pinMode(magLED, OUTPUT);
-    
-  //IMU possible start up error message
-  if (LSM.begin() == false) // with no arguments, this uses default addresses (AG:0x6B, M:0x1E) and i2c port (Wire).
-  {
-    Serial.println("Failed to communicate with LSM9DS1.");  //Prints error message on startup if the IMU is not wired correctly.
-  }
-  
-  delay(500);
-  
-   // [enabled] turns the magnetometer on or off.
+void setupMag()
+{
+  // [enabled] turns the magnetometer on or off.
   LSM.settings.mag.enabled = true; // Enable magnetometer
   // [scale] sets the full-scale range of the magnetometer
   // mag scale can be 4, 8, 12, or 16
@@ -62,8 +49,24 @@ void setup() {
   // 1 = single-conversion
   // 2 = power down
   LSM.settings.mag.operatingMode = 0; // Continuous mode
+}
+
+void setup() { 
+  Serial1.begin(9600); //XBEE SERIAL
+  Serial.begin(9600);  //begins serial communications that can be used for troubleshooting at a baud rate of 9600.
+  Wire.begin(); //initiates wire library for I2C
+  //LED pin outputs 
+  pinMode(magLED, OUTPUT);
+    
+  //IMU possible start up error message
+  if (LSM.begin() == false) // with no arguments, this uses default addresses (AG:0x6B, M:0x1E) and i2c port (Wire).
+  {
+    Serial.println("Failed to communicate with LSM9DS1.");  //Prints error message on startup if the IMU is not wired correctly.
+  }
   
-  //Prints header everytime on startup
+  delay(500);
+  
+    //Prints header everytime on startup
   String headerLOG = "Time(ms), Mag(x), Mag(y), Mag(z)";  //Defines "headerLOG" as a string that contains the inscribed text.
   Serial.print("magData Format");
   Serial.print(",");
