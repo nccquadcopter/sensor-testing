@@ -6,6 +6,8 @@
 //Pin definitions 
 #define magLED 13
 
+void setupMag();
+
 //Objects
 LSM9DS1 LSM;  //States "imu" is an LSM9DS1 IMU class object
 
@@ -76,6 +78,8 @@ void setup() {
 }
 
 void loop() {
+
+  
   //IMU loop (gets the new data every loop and redefines the variables and then puts them in the string "magData"
   if (LSM.magAvailable() ){
     LSM.readMag();
