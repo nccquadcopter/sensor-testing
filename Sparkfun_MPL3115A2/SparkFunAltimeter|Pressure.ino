@@ -74,6 +74,10 @@ void loop()
   float temperature = myPressure.readTempF();
   Serial.print(" Temp(f):");
   Serial.print(temperature, 2);
+ 
+  //Serial.print(" Time(s):"); // header
+  //Serial.print(millis()/1000); // output time in seconds
+  //delay(1000);
 
   Serial.println();
 }
