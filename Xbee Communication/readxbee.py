@@ -1,3 +1,4 @@
+import pandas as pd
 import serial # these
 import time # are package "dependencies." Think of them as "libraries" for certain functions (like the libraries that contain certain functions for our sensors)
 
@@ -28,9 +29,15 @@ while True: #for as long as there is no exception, do the following:
 		oneByte = ser.read(1) #try reading one byte, what does it say?
 		if oneByte == b"\r": #if that byte indicates the end of the line...
 			print (buffer) # print it out so we can see what it said 
+
 			with open(path,"a") as f: #lines 30 and 32 write to the file
 				f.write(str(time.time()) + "," + str(buffer) + "\n")
+
+			# data = pd.Series(buffer)
+			# data = data.to_json()
+			
 			buffer = "" #let's reset the buffer, because we just saved the whole line.
+
 			continue #and continue with our "while loop"
 		else:
 			buffer += oneByte.decode() #if line 28 indicated that it wasn't the end of the line, add the byte to the buffer and continue our while loop.
