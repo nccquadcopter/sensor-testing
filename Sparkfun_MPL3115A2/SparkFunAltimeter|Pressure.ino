@@ -57,23 +57,23 @@ void loop()
 {
   //float altitude = myPressure.readAltitude();
   //Serial.print("Altitude(m):");
-  //Serial.print(altitude, 2);
+  //Serial.print(altitude, 2); Serial.print(',');
 
   float altitude = myPressure.readAltitudeFt();
   Serial.print(" Altitude(ft):");
-  Serial.print(altitude, 2);
+  Serial.print(altitude, 2); Serial.print(',');
 
   //float pressure = myPressure.readPressure();
   //Serial.print("Pressure(Pa):");
-  //Serial.print(pressure, 2);
+  //Serial.print(pressure, 2); Serial.print(',');
 
   //float temperature = myPressure.readTemp();
   //Serial.print(" Temp(c):");
-  //Serial.print(temperature, 2);
+  //Serial.print(temperature, 2); Serial.print(',');
 
   float temperature = myPressure.readTempF();
   Serial.print(" Temp(f):");
-  Serial.print(temperature, 2);
+  Serial.print(temperature, 2); Serial.print(',');
  
   //Serial.print(" Time(s):"); // header
   //Serial.print(millis()/1000); // output time in seconds
