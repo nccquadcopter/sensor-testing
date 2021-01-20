@@ -64,6 +64,11 @@ void loop()
   Serial.print(altitude, 2); Serial.print(',');
 
   //float pressure = myPressure.readPressure();
+  //Serial.print("Pressure(inHg):");
+  //pressure = pressure/3386;
+  //Serial.print(pressure, 2); Serial.print(',');
+ 
+  //float pressure = myPressure.readPressure();
   //Serial.print("Pressure(Pa):");
   //Serial.print(pressure, 2); Serial.print(',');
 
