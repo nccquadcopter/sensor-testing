@@ -6,8 +6,6 @@
 //Pin definitions 
 #define magLED 13
 
-void setupMag();
-
 //Objects
 LSM9DS1 LSM;  //States "imu" is an LSM9DS1 IMU class object
 
@@ -16,6 +14,30 @@ String magData;  //string that will be set to hold all of the IMU magnetometer d
 float magX; // magnetometer values
 float magY;
 float magZ;
+
+void setup() { 
+  Serial1.begin(9600); //XBEE SERIAL
+  Serial.begin(9600);  //begins serial communications that can be used for troubleshooting at a baud rate of 9600.
+  Wire.begin(); //initiates wire library for I2C
+  //LED pin outputs 
+  pinMode(magLED, OUTPUT);
+    
+  //IMU possible start up error message
+  if (LSM.begin() == false) // with no arguments, this uses default addresses (AG:0x6B, M:0x1E) and i2c port (Wire).
+  {
+    Serial.println("Failed to communicate with LSM9DS1.");  //Prints error message on startup if the IMU is not wired correctly.
+  }
+  
+  delay(500);
+  
+    //Prints header everytime on startup
+  String headerLOG = "Time(ms), Mag(x), Mag(y), Mag(z)";  //Defines "headerLOG" as a string that contains the inscribed text.
+  Serial.print("magData Format");
+  Serial.print(",");
+  Serial.print(headerLOG);
+  Serial.print("\r");
+  delay(500);  //waits 500 ms
+}
 
 void setupMag()
 {
@@ -53,33 +75,7 @@ void setupMag()
   LSM.settings.mag.operatingMode = 0; // Continuous mode
 }
 
-void setup() { 
-  Serial1.begin(9600); //XBEE SERIAL
-  Serial.begin(9600);  //begins serial communications that can be used for troubleshooting at a baud rate of 9600.
-  Wire.begin(); //initiates wire library for I2C
-  //LED pin outputs 
-  pinMode(magLED, OUTPUT);
-    
-  //IMU possible start up error message
-  if (LSM.begin() == false) // with no arguments, this uses default addresses (AG:0x6B, M:0x1E) and i2c port (Wire).
-  {
-    Serial.println("Failed to communicate with LSM9DS1.");  //Prints error message on startup if the IMU is not wired correctly.
-  }
-  
-  delay(500);
-  
-    //Prints header everytime on startup
-  String headerLOG = "Time(ms), Mag(x), Mag(y), Mag(z)";  //Defines "headerLOG" as a string that contains the inscribed text.
-  Serial.print("magData Format");
-  Serial.print(",");
-  Serial.print(headerLOG);
-  Serial.print("\r");
-  delay(500);  //waits 500 ms
-}
-
 void loop() {
-
-  
   //IMU loop (gets the new data every loop and redefines the variables and then puts them in the string "magData"
   if (LSM.magAvailable() ){
     LSM.readMag();
@@ -103,8 +99,12 @@ void loop() {
   //Creates the string "dataLOG" and includes the device measurements listed, which is then printed to the serial monitor.
   String dataLOG = String(millis()) + "," + magData;
   Serial1.print("magData");
+//  Serial.print("magData");
   Serial1.print(",");
+//  Serial.print(",");
   Serial1.print(dataLOG);
+//  Serial.print(dataLOG);
   Serial1.print("\r");
+//  Serial.print("\n");
   delay(100);  //waits .05 sec before re-running the loop  
 }

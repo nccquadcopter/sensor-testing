@@ -99,8 +99,12 @@ void loop() {
   //Creates the string "dataLOG" and includes the device measurements listed, which is then printed to the serial monitor.
   String dataLOG = String(millis()) + "," + magData;
   Serial1.print("magData");
+  // Serial.print("magData");
   Serial1.print(",");
+  // Serial.print(",");
   Serial1.print(dataLOG);
+  // Serial.print(dataLOG);
   Serial1.print("\r");
+  // Serial.print("\r");
   delay(100);  //waits .05 sec before re-running the loop  
 }
